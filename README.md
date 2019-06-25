@@ -23,8 +23,11 @@ After the recovery, a new EC2 instance will be running with the same ID and priv
 ![EC2 Failure](arch1.png)
 
 The program works as follows:
+
 • A virtual machine with user data containing a Shell script installs a Jenkins server during bootstrapping
+
 • A public IP address assigned to the EC2 instance to access the new instance after a recovery using the same public IP address as before
+
 • A CloudWatch alarm based on the system status metric published by the EC2 service
 
 The Jenkins server runs on a virtual machine with automated recovery. If the virtual machine fails because of issues with the host system, it will be recovered with all data and the same public IP address. The URL doesn’t change because the use of Elastic IP for the virtual machine. All data is restored because the new virtual machine uses the same EBS volume as the previous virtual machine.
